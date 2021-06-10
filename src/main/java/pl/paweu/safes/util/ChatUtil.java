@@ -17,18 +17,19 @@ public final class ChatUtil {
     }
 
     public static List<String> fixColor(List<String> list) {
-        List<String> fixed = new ArrayList<>();
-        if (list == null || list.isEmpty()) return fixed;
-        for (final String s : list) fixed.add(fixColor(s));
-        return fixed;
+        if (list == null || list.isEmpty()) return new ArrayList<>();
+        for(int i = 0; i < list.size(); i++) list.set(i, fixColor(list.get(i)));
+        return list;
     }
 
     public static boolean sendMessage(CommandSender sender, String message){
+        if(sender == null || message == null || message.isEmpty()) return false;
         sender.sendMessage(fixColor(message));
         return true;
     }
 
     public static boolean sendMessage(Player player, String message){
+        if(player == null || message == null || message.isEmpty()) return false;
         player.sendMessage(fixColor(message));
         return true;
     }
